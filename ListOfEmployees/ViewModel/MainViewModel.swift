@@ -10,21 +10,42 @@ import Foundation
 class MainViewModel {
     
     private var selectedIndexPath: IndexPath?
+    let networkManager = NetworkManager()
     
-    var profiles = [
-        Profile(id: "e0fceffa-cef3-45f7-97c6-6be2e3705927", avatar: nil, firstName: "Dee", lastName: "Reichert", userTag: "LK", department: "back_office", position: "Technician", birthday: nil, phone: nil),
-        Profile(id: "e0fceffa-cef3-45f7-97c6-6be2e3705927", avatar: nil, firstName: "Dee", lastName: "Reichert", userTag: "LK", department: "back_office", position: "Technician", birthday: nil, phone: nil),
-        Profile(id: "e0fceffa-cef3-45f7-97c6-6be2e3705927", avatar: nil, firstName: "Dee", lastName: "Reichert", userTag: "LK", department: "back_office", position: "Technician", birthday: nil, phone: nil),
-        Profile(id: "e0fceffa-cef3-45f7-97c6-6be2e3705927", avatar: nil, firstName: "Dee", lastName: "Reichert", userTag: "LK", department: "back_office", position: "Technician", birthday: nil, phone: nil),
-        Profile(id: "e0fceffa-cef3-45f7-97c6-6be2e3705927", avatar: nil, firstName: "Dee", lastName: "Reichert", userTag: "LK", department: "back_office", position: "Technician", birthday: nil, phone: nil)]
+    var profiles: [Profile]?
     
     func numberOfRows() -> Int {
-        return profiles.count
+        return profiles?.count ?? 0
     }
     
     func cellViewModel(forIndexPath indexPath: IndexPath) -> MainTableViewCellViewModel? {
-        let profile = profiles[indexPath.row]
+        guard let profile = profiles?[indexPath.row] else { return nil }
+            
         return MainTableViewCellViewModel(profile: profile)
     }
+    
+    
+    func fetchProfiles(completion: @escaping() -> ()) {
+        networkManager.fetchProfiles { [weak self] profiles in
+            self?.profiles = profiles
+            completion()
+        }
+    }
+    
+    let sectionsArray = [ "Все",
+                          "Android",
+                          "iOS",
+                          "Дизайн",
+                          "Менеджмент",
+                          "QA",
+                          "Бэк-офис",
+                          "Frontend",
+                          "HR",
+                          "PR",
+                          "Backend",
+                          "Техподдержка",
+                          "Аналитика" ]
+    
+    
     
 }

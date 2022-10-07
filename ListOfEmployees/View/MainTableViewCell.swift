@@ -18,6 +18,9 @@ class MainTableViewCell: UITableViewCell {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }
             fullNameLabel.text = viewModel.fullName
+            userTagLabel.text = viewModel.userTag
+            positionLabel.text = viewModel.position
+            self.avatarImageView.image = UIImage(named: "goose")
         }
     }
 

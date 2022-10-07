@@ -23,6 +23,13 @@ class MainViewController: UIViewController {
         setupSearchBar()
         tableView.dataSource = self
         tableView.rowHeight = 80
+        tableView.separatorStyle = .none
+        
+        viewModel.fetchProfiles { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
     }
     
     func setupSearchBar() {
@@ -35,17 +42,7 @@ class MainViewController: UIViewController {
     func setupDepartmentsSegmentedControl() {
         
         //set titles
-        let segmentedControl = HMSegmentedControl(sectionTitles: [
-            "Все",
-            "Designers",
-            "Analysts",
-            "Managers",
-            "iOS",
-            "Android",
-            "QA",
-            "Frontend",
-            "HR"
-        ])
+        let segmentedControl = HMSegmentedControl(sectionTitles: viewModel.sectionsArray)
         
         //change appearance
         segmentedControl.selectionIndicatorColor = UIColor(named: "primaryPurple")!
@@ -98,9 +95,7 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MainTableViewCell else {return UITableViewCell()}
         
-        let cellViewModel = viewModel.cellViewModel(forIndexPath: indexPath)
-        
-        cell.viewModel = cellViewModel
+        cell.viewModel = viewModel.cellViewModel(forIndexPath: indexPath)
         
         return cell
     }

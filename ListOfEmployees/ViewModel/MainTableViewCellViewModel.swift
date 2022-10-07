@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class MainTableViewCellViewModel {
     
@@ -13,6 +14,18 @@ class MainTableViewCellViewModel {
     
     var fullName: String {
         return profile.firstName + " " + profile.lastName
+    }
+    
+    var userTag: String {
+        return profile.userTag
+    }
+    
+    var position: String {
+        return profile.position
+    }
+    
+    var avatarURL: String{
+        profile.avatarUrl
     }
     
     init(profile: Profile) {
