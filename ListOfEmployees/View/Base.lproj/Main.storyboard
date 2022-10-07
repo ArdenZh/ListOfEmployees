@@ -49,6 +49,12 @@
                                                         <constraint firstAttribute="height" constant="72" id="68v-kj-1rO"/>
                                                         <constraint firstAttribute="width" constant="72" id="l3i-kJ-bSU"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
+                                                            <real key="value" value="36"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cZi-He-xoE">
                                                     <rect key="frame" x="108" y="21.5" width="179" height="37.5"/>
@@ -61,22 +67,50 @@
                                                                     <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="16"/>
                                                                     <color key="textColor" name="textPrimary"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
+                                                                            <real key="value" value="5"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRp-tl-l4b">
                                                                     <rect key="frame" x="163" y="2" width="16" height="17"/>
                                                                     <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="14"/>
                                                                     <color key="textColor" name="textTetriary"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHiddenWhenSkeletonIsActive" value="YES"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Analyst" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SId-fR-10n">
                                                             <rect key="frame" x="0.0" y="21.5" width="46" height="16"/>
                                                             <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="13"/>
                                                             <color key="textColor" name="textSecondary"/>
                                                             <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
+                                                            <real key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -85,7 +119,13 @@
                                                 <constraint firstItem="cZi-He-xoE" firstAttribute="leading" secondItem="VAl-Fk-1Wj" secondAttribute="trailing" constant="16" id="j7X-Hs-dN5"/>
                                                 <constraint firstItem="cZi-He-xoE" firstAttribute="centerY" secondItem="JDk-7u-5PW" secondAttribute="centerY" id="nVb-Uu-pE7"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </tableViewCellContentView>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="avatarImageView" destination="VAl-Fk-1Wj" id="vBe-Dn-1ec"/>
                                             <outlet property="fullNameLabel" destination="RDi-UW-0KR" id="r62-bQ-Zzu"/>

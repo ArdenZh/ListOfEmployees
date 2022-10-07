@@ -7,6 +7,7 @@
 
 import UIKit
 import HMSegmentedControl
+import SkeletonView
 
 class MainViewController: UIViewController {
 
@@ -26,11 +27,26 @@ class MainViewController: UIViewController {
         tableView.separatorStyle = .none
         
         viewModel.fetchProfiles { [weak self] in
+            
             DispatchQueue.main.async {
+                self?.tableView.stopSkeletonAnimation()
+                self?.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 self?.tableView.reloadData()
             }
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.isSkeletonable = true
+        let gradientLeftClolr = UIColor(named: "gradientLeft")!
+        let gradientRightClolr = UIColor(named: "gradientRight")!
+        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
+        tableView.showAnimatedGradientSkeleton(usingGradient: .init(colors: [gradientLeftClolr, gradientRightClolr]), animation: animation)
+    
+    }
+    
+    
     
     func setupSearchBar() {
         
@@ -85,20 +101,26 @@ class MainViewController: UIViewController {
 }
 
 
-extension MainViewController: UITableViewDataSource {
-    
+extension MainViewController: SkeletonTableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows()
     }
     
-    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "cell"
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MainTableViewCell else {return UITableViewCell()}
-        
+
         cell.viewModel = viewModel.cellViewModel(forIndexPath: indexPath)
-        
+
         return cell
     }
-    
-    
+
+
 }
+
+    
+

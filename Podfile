@@ -8,5 +8,6 @@ target 'ListOfEmployees' do
   # Pods for ListOfEmployees
 
 pod 'HMSegmentedControl'
+pod 'SkeletonView'
 
 end
