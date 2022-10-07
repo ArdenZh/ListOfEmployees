@@ -25,15 +25,8 @@ class MainViewController: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = 80
         tableView.separatorStyle = .none
+        fetchProfiles()
         
-        viewModel.fetchProfiles { [weak self] in
-            
-            DispatchQueue.main.async {
-                self?.tableView.stopSkeletonAnimation()
-                self?.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
-                self?.tableView.reloadData()
-            }
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,6 +37,29 @@ class MainViewController: UIViewController {
         let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
         tableView.showAnimatedGradientSkeleton(usingGradient: .init(colors: [gradientLeftClolr, gradientRightClolr]), animation: animation)
     
+    }
+    
+    
+    func fetchProfiles() {
+        viewModel.fetchProfiles { [weak self] result in
+            if result == true {
+                DispatchQueue.main.async {
+                    self?.tableView.stopSkeletonAnimation()
+                    self?.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+                    self?.tableView.reloadData()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self?.performSegue(withIdentifier: "criticalErrorSegue", sender: nil)
+                }
+            }
+        }
+    }
+    
+    
+    @IBAction func tryAgainUnwindSegue(_ unwindSegue: UIStoryboardSegue) {
+        guard unwindSegue.identifier == "tryFetchProfilesAgain" else {return}
+        fetchProfiles()
     }
     
     

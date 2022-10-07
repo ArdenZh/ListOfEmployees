@@ -25,10 +25,14 @@ class MainViewModel {
     }
     
     
-    func fetchProfiles(completion: @escaping() -> ()) {
+    func fetchProfiles(completion: @escaping(Bool) -> ()) {
         networkManager.fetchProfiles { [weak self] profiles in
-            self?.profiles = profiles
-            completion()
+            if let profiles = profiles {
+                self?.profiles = profiles
+                completion(true)
+            } else {
+                completion(false)
+            }
         }
     }
     

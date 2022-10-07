@@ -15,6 +15,9 @@
         <array key="Inter-Regular.ttf">
             <string>Inter-Regular</string>
         </array>
+        <array key="Inter-SemiBold.ttf">
+            <string>Inter-SemiBold</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Main View Controller-->
@@ -153,6 +156,7 @@
                         <outlet property="departmentsView" destination="Gkr-KZ-yZA" id="iv0-LF-o3M"/>
                         <outlet property="searchBarView" destination="fKZ-NS-9Gk" id="ede-A8-uEF"/>
                         <outlet property="tableView" destination="Mr3-eb-atP" id="jRJ-eT-45w"/>
+                        <segue destination="dj8-Vr-oem" kind="show" identifier="criticalErrorSegue" id="TiJ-r0-5jI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BW9-Nu-N48" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -164,6 +168,68 @@
                 </searchBar>
             </objects>
             <point key="canvasLocation" x="1205.7971014492755" y="-248.4375"/>
+        </scene>
+        <!--Critical Error View Controller-->
+        <scene sceneID="A9m-zj-vax">
+            <objects>
+                <viewController id="dj8-Vr-oem" customClass="CriticalErrorViewController" customModule="ListOfEmployees" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zef-Rh-Ziu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nTr-kJ-qta">
+                                <rect key="frame" x="64.5" y="367" width="285.5" height="162"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flyingSauce" translatesAutoresizingMaskIntoConstraints="NO" id="MFY-ck-xqo">
+                                        <rect key="frame" x="0.0" y="0.0" width="285.5" height="56"/>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="AGW-00-eBk">
+                                        <rect key="frame" x="0.0" y="64" width="285.5" height="98"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Какой-то сверхразум все сломал" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAx-TJ-1ir">
+                                                <rect key="frame" x="0.0" y="0.0" width="285.5" height="21"/>
+                                                <fontDescription key="fontDescription" name="Inter-SemiBold" family="Inter" pointSize="17"/>
+                                                <color key="textColor" name="textPrimary"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Постараемся быстро починить" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KR5-YH-CpA">
+                                                <rect key="frame" x="20" y="33" width="245.5" height="19.5"/>
+                                                <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="16"/>
+                                                <color key="textColor" name="textTetriary"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqx-Lf-YrM">
+                                                <rect key="frame" x="52" y="64.5" width="181" height="33.5"/>
+                                                <color key="tintColor" name="primaryPurple"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Попробовать снова">
+                                                    <fontDescription key="titleFontDescription" name="Inter-SemiBold" family="Inter" pointSize="16"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="tryAgainButtonPressed:" destination="dj8-Vr-oem" eventType="touchUpInside" id="PQA-2S-x30"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="C4d-QT-rJy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nTr-kJ-qta" firstAttribute="centerY" secondItem="zef-Rh-Ziu" secondAttribute="centerY" id="bsq-nb-uea"/>
+                            <constraint firstItem="nTr-kJ-qta" firstAttribute="centerX" secondItem="zef-Rh-Ziu" secondAttribute="centerX" id="hLC-Pa-HAd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Q6s-ZC-iCQ"/>
+                    <connections>
+                        <segue destination="p7e-ZT-wLR" kind="unwind" identifier="tryFetchProfilesAgain" unwindAction="tryAgainUnwindSegue:" id="x3a-Pf-mf9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E3u-ne-bIN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="p7e-ZT-wLR" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2171" y="-248"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xs8-fT-4tz">
@@ -185,6 +251,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="flyingSauce" width="56" height="56"/>
         <namedColor name="primaryPurple">
             <color red="0.396078431372549" green="0.20392156862745098" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
