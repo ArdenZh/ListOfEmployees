@@ -15,28 +15,34 @@ class MainViewController: UIViewController {
     @IBOutlet weak var departmentsView: UIView!
     @IBOutlet weak var searchBarView: UISearchBar!
     
-    var viewModel = MainViewModel()
+    let viewModel = MainViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        showSceleton()
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
         setupDepartmentsSegmentedControl()
         setupSearchBar()
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.rowHeight = 80
         tableView.separatorStyle = .none
         fetchProfiles()
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    func showSceleton() {
         tableView.isSkeletonable = true
         let gradientLeftClolr = UIColor(named: "gradientLeft")!
         let gradientRightClolr = UIColor(named: "gradientRight")!
         let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
         tableView.showAnimatedGradientSkeleton(usingGradient: .init(colors: [gradientLeftClolr, gradientRightClolr]), animation: animation)
-    
     }
     
     
@@ -134,9 +140,27 @@ extension MainViewController: SkeletonTableViewDataSource {
 
         return cell
     }
-
-
 }
 
+extension MainViewController: UITableViewDelegate {
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        viewModel.selectRow(atIndexPath: indexPath)
+        performSegue(withIdentifier: "personalCardSegue", sender: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else { return }
+        
+        if identifier == "personalCardSegue" {
+            if let dvc = segue.destination as? PersonalCardViewController {
+                dvc.viewModel = viewModel.viewModelForSelectedRow()
+            }
+        }
+    }
+}
     
 

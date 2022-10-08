@@ -24,6 +24,15 @@ class MainViewModel {
         return MainTableViewCellViewModel(profile: profile)
     }
     
+    func viewModelForSelectedRow() -> PersonalCardViewModel? {
+        guard let selectedIndexPath = selectedIndexPath else { return nil }
+        guard let profile = profiles?[selectedIndexPath.row] else { return nil }
+        return PersonalCardViewModel(profile: profile)
+    }
+    
+    func selectRow(atIndexPath indexPath: IndexPath) {
+        self.selectedIndexPath = indexPath
+    }
     
     func fetchProfiles(completion: @escaping(Bool) -> ()) {
         networkManager.fetchProfiles { [weak self] profiles in

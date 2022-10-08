@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Inter-Bold.ttf">
+            <string>Inter-Bold</string>
+        </array>
         <array key="Inter-Medium.ttf">
             <string>Inter-Medium</string>
         </array>
@@ -157,6 +160,7 @@
                         <outlet property="searchBarView" destination="fKZ-NS-9Gk" id="ede-A8-uEF"/>
                         <outlet property="tableView" destination="Mr3-eb-atP" id="jRJ-eT-45w"/>
                         <segue destination="dj8-Vr-oem" kind="show" identifier="criticalErrorSegue" id="TiJ-r0-5jI"/>
+                        <segue destination="auN-my-UxM" kind="show" identifier="personalCardSegue" id="I91-bh-b4w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BW9-Nu-N48" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -168,6 +172,128 @@
                 </searchBar>
             </objects>
             <point key="canvasLocation" x="1205.7971014492755" y="-248.4375"/>
+        </scene>
+        <!--Personal Card View Controller-->
+        <scene sceneID="CnH-sV-K0G">
+            <objects>
+                <viewController id="auN-my-UxM" customClass="PersonalCardViewController" customModule="ListOfEmployees" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aGK-B7-EqT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CEh-XS-YqV">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="280"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="HXS-Rw-3xr">
+                                        <rect key="frame" x="106.5" y="198.5" width="201" height="29.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Алиса Иванова" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCx-hG-fAK">
+                                                <rect key="frame" x="0.0" y="0.0" width="183" height="29.5"/>
+                                                <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="24"/>
+                                                <color key="textColor" name="textPrimary"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="al" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTY-gL-c53">
+                                                <rect key="frame" x="187" y="7" width="14" height="21"/>
+                                                <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="17"/>
+                                                <color key="textColor" name="textTetriary"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Designer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZP-tf-3Bh">
+                                        <rect key="frame" x="179.5" y="240" width="55" height="16"/>
+                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="13"/>
+                                        <color key="textColor" name="textSecondary"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uC3-R3-EZd">
+                                        <rect key="frame" x="155" y="70.5" width="104" height="104"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="104" id="hVI-Hg-QML"/>
+                                            <constraint firstAttribute="width" constant="104" id="sA0-cd-OD2"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" name="bgSecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="PZP-tf-3Bh" secondAttribute="bottom" constant="24" id="7SM-Ye-56b"/>
+                                    <constraint firstItem="PZP-tf-3Bh" firstAttribute="centerX" secondItem="CEh-XS-YqV" secondAttribute="centerX" id="9Yl-bR-p1d"/>
+                                    <constraint firstItem="uC3-R3-EZd" firstAttribute="centerX" secondItem="CEh-XS-YqV" secondAttribute="centerX" id="M97-Dd-XRc"/>
+                                    <constraint firstAttribute="height" constant="280" id="TTv-r6-1do"/>
+                                    <constraint firstItem="HXS-Rw-3xr" firstAttribute="centerX" secondItem="CEh-XS-YqV" secondAttribute="centerX" id="WPB-3d-mG7"/>
+                                    <constraint firstItem="PZP-tf-3Bh" firstAttribute="top" secondItem="HXS-Rw-3xr" secondAttribute="bottom" constant="12" id="XVU-b0-AqE"/>
+                                    <constraint firstItem="HXS-Rw-3xr" firstAttribute="top" secondItem="uC3-R3-EZd" secondAttribute="bottom" constant="24" id="e7e-A7-xye"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="Ay4-lo-q2T">
+                                <rect key="frame" x="18" y="310" width="133" height="20"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="1mk-SJ-GPw">
+                                        <rect key="frame" x="0.0" y="0.0" width="21" height="20"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 июня 1996" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAW-hr-gcC">
+                                        <rect key="frame" x="35" y="0.5" width="98" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="16"/>
+                                        <color key="textColor" name="textPrimary"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="l5y-Is-ucv">
+                                <rect key="frame" x="18" y="380" width="186" height="32"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="o0q-Cd-MWg">
+                                        <rect key="frame" x="0.0" y="0.0" width="21" height="32"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3R-Xj-hjY">
+                                        <rect key="frame" x="35" y="0.0" width="151" height="32"/>
+                                        <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="16"/>
+                                        <color key="tintColor" name="textPrimary"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="+7 (999) 900 90 90"/>
+                                        <connections>
+                                            <action selector="phoneButtonPressed:" destination="auN-my-UxM" eventType="touchUpInside" id="N9r-Gy-YKa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 года" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqF-a5-eoJ">
+                                <rect key="frame" x="335.5" y="310" width="60.5" height="19.5"/>
+                                <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="16"/>
+                                <color key="textColor" name="textTetriary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cRA-VS-4Cg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XqF-a5-eoJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ay4-lo-q2T" secondAttribute="trailing" constant="100" id="0BY-ZB-TJQ"/>
+                            <constraint firstItem="Ay4-lo-q2T" firstAttribute="leading" secondItem="cRA-VS-4Cg" secondAttribute="leading" constant="18" id="1dk-zb-QIp"/>
+                            <constraint firstItem="CEh-XS-YqV" firstAttribute="trailing" secondItem="cRA-VS-4Cg" secondAttribute="trailing" id="4Hq-op-SMz"/>
+                            <constraint firstItem="Ay4-lo-q2T" firstAttribute="top" secondItem="CEh-XS-YqV" secondAttribute="bottom" constant="30" id="AwC-48-qJ8"/>
+                            <constraint firstItem="XqF-a5-eoJ" firstAttribute="top" secondItem="CEh-XS-YqV" secondAttribute="bottom" constant="30" id="U5t-kk-mEK"/>
+                            <constraint firstItem="cRA-VS-4Cg" firstAttribute="trailing" secondItem="XqF-a5-eoJ" secondAttribute="trailing" constant="18" id="VUy-5e-SrT"/>
+                            <constraint firstItem="l5y-Is-ucv" firstAttribute="leading" secondItem="cRA-VS-4Cg" secondAttribute="leading" constant="18" id="XjH-1z-GTG"/>
+                            <constraint firstItem="l5y-Is-ucv" firstAttribute="top" secondItem="Ay4-lo-q2T" secondAttribute="bottom" constant="50" id="cj5-yi-QsK"/>
+                            <constraint firstItem="CEh-XS-YqV" firstAttribute="top" secondItem="aGK-B7-EqT" secondAttribute="top" id="lXr-Fx-8KU"/>
+                            <constraint firstItem="CEh-XS-YqV" firstAttribute="leading" secondItem="cRA-VS-4Cg" secondAttribute="leading" id="qwW-6s-Yem"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="3Uq-uV-9fL"/>
+                    <connections>
+                        <outlet property="ageLabel" destination="XqF-a5-eoJ" id="lcB-4n-5Df"/>
+                        <outlet property="avatarImageView" destination="uC3-R3-EZd" id="beA-9i-1qo"/>
+                        <outlet property="birthdayLabel" destination="ZAW-hr-gcC" id="taa-Fm-KOj"/>
+                        <outlet property="fullNameLabel" destination="VCx-hG-fAK" id="x6y-b5-z8d"/>
+                        <outlet property="phoneButton" destination="U3R-Xj-hjY" id="6ga-KM-x3U"/>
+                        <outlet property="positionLabel" destination="PZP-tf-3Bh" id="UHk-Fa-jlJ"/>
+                        <outlet property="userTagLabel" destination="fTY-gL-c53" id="yE5-Xc-Mni"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jvC-a9-FeG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2275.36231884058" y="50.892857142857139"/>
         </scene>
         <!--Critical Error View Controller-->
         <scene sceneID="A9m-zj-vax">
@@ -229,7 +355,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E3u-ne-bIN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="p7e-ZT-wLR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2171" y="-248"/>
+            <point key="canvasLocation" x="2209" y="-676"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xs8-fT-4tz">
@@ -239,6 +365,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7wI-PC-Pwu">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="textPrimary"/>
+                        <color key="barTintColor" name="textPrimary"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -252,6 +380,11 @@
     </scenes>
     <resources>
         <image name="flyingSauce" width="56" height="56"/>
+        <image name="phone" width="21" height="20"/>
+        <image name="star" width="21" height="20"/>
+        <namedColor name="bgSecondary">
+            <color red="0.96862745098039216" green="0.96862745098039216" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="primaryPurple">
             <color red="0.396078431372549" green="0.20392156862745098" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -24,9 +24,6 @@ class MainTableViewCellViewModel {
         return profile.position
     }
     
-    var avatarURL: String{
-        profile.avatarUrl
-    }
     
     init(profile: Profile) {
         self.profile = profile
