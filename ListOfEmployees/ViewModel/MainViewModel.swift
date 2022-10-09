@@ -13,14 +13,19 @@ class MainViewModel {
     let networkManager = NetworkManager()
     
     var profiles: [Profile]?
+    var filteredProfiles: [Profile]?
+    let departments = Departments()
+    
+    var departmentsArray: [String] {
+        return departments.departmentsArray
+    }
     
     func numberOfRows() -> Int {
-        return profiles?.count ?? 0
+        return filteredProfiles?.count ?? 0
     }
     
     func cellViewModel(forIndexPath indexPath: IndexPath) -> MainTableViewCellViewModel? {
-        guard let profile = profiles?[indexPath.row] else { return nil }
-            
+        guard let profile = filteredProfiles?[indexPath.row] else { return nil }
         return MainTableViewCellViewModel(profile: profile)
     }
     
@@ -34,10 +39,11 @@ class MainViewModel {
         self.selectedIndexPath = indexPath
     }
     
+    
     func fetchProfiles(completion: @escaping(Bool) -> ()) {
         networkManager.fetchProfiles { [weak self] profiles in
             if let profiles = profiles {
-                self?.profiles = profiles
+                self?.profiles = profiles.sorted(by: {$0.firstName < $1.firstName})
                 completion(true)
             } else {
                 completion(false)
@@ -45,20 +51,22 @@ class MainViewModel {
         }
     }
     
-    let sectionsArray = [ "Все",
-                          "Android",
-                          "iOS",
-                          "Дизайн",
-                          "Менеджмент",
-                          "QA",
-                          "Бэк-офис",
-                          "Frontend",
-                          "HR",
-                          "PR",
-                          "Backend",
-                          "Техподдержка",
-                          "Аналитика" ]
+    
+    func filterProfilesByDepartment(selectedDepartmentIndex: UInt) {
+        if selectedDepartmentIndex == 0 {
+            filteredProfiles = profiles
+        } else {
+            let localizedDepartment = departments.departmentsArray[Int(selectedDepartmentIndex)]
+            if let selectedDepartmentString = departments.departmentsDictionary[localizedDepartment] {
+                filteredProfiles = profiles?.filter({ $0.department == selectedDepartmentString })
+            } else {
+                filteredProfiles = profiles
+            }
+        }
+    }
     
     
+    
+
     
 }

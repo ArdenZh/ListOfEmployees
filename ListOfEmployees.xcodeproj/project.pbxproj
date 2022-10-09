@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F9182711D0C6D8DD83E8C011 /* Pods_ListOfEmployees.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BE9B42F5ADE28A0926CEB6 /* Pods_ListOfEmployees.framework */; };
+		FC0446A228F2E15300036ACC /* Departments.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0446A128F2E15300036ACC /* Departments.swift */; };
 		FC27338728EC5ECE00A1C4B6 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC27338328EC5ECD00A1C4B6 /* Inter-SemiBold.ttf */; };
 		FC27338828EC5ECE00A1C4B6 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC27338428EC5ECE00A1C4B6 /* Inter-Bold.ttf */; };
 		FC27338928EC5ECE00A1C4B6 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC27338528EC5ECE00A1C4B6 /* Inter-Medium.ttf */; };
@@ -32,6 +33,7 @@
 		468A6D2765484693A3D6ABA6 /* Pods-ListOfEmployees.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListOfEmployees.release.xcconfig"; path = "Target Support Files/Pods-ListOfEmployees/Pods-ListOfEmployees.release.xcconfig"; sourceTree = "<group>"; };
 		E4BE9B42F5ADE28A0926CEB6 /* Pods_ListOfEmployees.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ListOfEmployees.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7E2BCEF61D93CFF8C8CA9B /* Pods-ListOfEmployees.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListOfEmployees.debug.xcconfig"; path = "Target Support Files/Pods-ListOfEmployees/Pods-ListOfEmployees.debug.xcconfig"; sourceTree = "<group>"; };
+		FC0446A128F2E15300036ACC /* Departments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Departments.swift; sourceTree = "<group>"; };
 		FC27338328EC5ECD00A1C4B6 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		FC27338428EC5ECE00A1C4B6 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		FC27338528EC5ECE00A1C4B6 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			children = (
 				FC4A792628EC6F7E006C9512 /* ProfileData.swift */,
 				FC4A792928EDC3DF006C9512 /* NetworkManager.swift */,
+				FC0446A128F2E15300036ACC /* Departments.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				FC61FE9928EAF1B40078E968 /* SceneDelegate.swift in Sources */,
 				FC4A791F28EC6C54006C9512 /* MainViewModel.swift in Sources */,
 				FC4A792328EC6CE8006C9512 /* MainTableViewCell.swift in Sources */,
+				FC0446A228F2E15300036ACC /* Departments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

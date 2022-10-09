@@ -80,7 +80,7 @@ class MainViewController: UIViewController {
     func setupDepartmentsSegmentedControl() {
         
         //set titles
-        let segmentedControl = HMSegmentedControl(sectionTitles: viewModel.sectionsArray)
+        let segmentedControl = HMSegmentedControl(sectionTitles: viewModel.departmentsArray)
         
         //change appearance
         segmentedControl.selectionIndicatorColor = UIColor(named: "primaryPurple")!
@@ -116,7 +116,8 @@ class MainViewController: UIViewController {
     
     
     @objc func segmentedControlChangedValue(segmentedControl: HMSegmentedControl) {
-        print("Selected index \(segmentedControl.selectedSegmentIndex)")
+        viewModel.filterProfilesByDepartment(selectedDepartmentIndex: segmentedControl.selectedSegmentIndex)
+        tableView.reloadData()
     }
     
 
@@ -143,7 +144,6 @@ extension MainViewController: SkeletonTableViewDataSource {
 }
 
 extension MainViewController: UITableViewDelegate {
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
