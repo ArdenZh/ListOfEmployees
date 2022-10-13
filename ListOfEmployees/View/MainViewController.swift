@@ -16,6 +16,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var searchBarView: UISearchBar!
     
     let viewModel = MainViewModel()
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +30,11 @@ class MainViewController: UIViewController {
         tableView.delegate = self
         tableView.rowHeight = 80
         tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
+        //tableView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
         fetchProfiles()
+        
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
         
     }
     
@@ -54,6 +58,7 @@ class MainViewController: UIViewController {
                     self?.tableView.stopSkeletonAnimation()
                     self?.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                     self?.tableView.reloadData()
+                    self?.refreshControl.endRefreshing()
                 }
             } else {
                 DispatchQueue.main.async {
@@ -61,6 +66,10 @@ class MainViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        fetchProfiles()
     }
     
     

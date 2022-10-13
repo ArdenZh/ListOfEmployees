@@ -17,6 +17,7 @@ class MainViewModel {
     var filteredAndSortedProfiles: [Profile]?
     var isAlphabetSorted = true
     let departments = Departments()
+    var currentDepartment: UInt = 0
     
     
     var departmentsArray: [String] {
@@ -102,6 +103,7 @@ class MainViewModel {
             if let profiles = profiles {
                 self?.profiles = profiles
                 self?.filteredAndSortedProfiles = self?.profiles
+                self?.filterProfilesByDepartment(selectedDepartmentIndex: self?.currentDepartment ?? 0)
                 self?.isAlphabetSorted == true ? self?.sortByAlphabet() : self?.sortByBirthday()
                 completion(true)
             } else {
@@ -112,7 +114,7 @@ class MainViewModel {
 
     
     func filterProfilesByDepartment(selectedDepartmentIndex: UInt) {
-        //currentDepartment = Int(selectedDepartmentIndex)
+        currentDepartment = selectedDepartmentIndex
         if selectedDepartmentIndex == 0 {
             filteredAndSortedProfiles = profiles
         } else {
