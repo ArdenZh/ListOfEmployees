@@ -29,6 +29,7 @@ class MainViewController: UIViewController {
         tableView.delegate = self
         tableView.rowHeight = 80
         tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
         fetchProfiles()
         
     }
@@ -64,14 +65,25 @@ class MainViewController: UIViewController {
     
     
     @IBAction func tryAgainUnwindSegue(_ unwindSegue: UIStoryboardSegue) {
-        guard unwindSegue.identifier == "tryFetchProfilesAgain" else {return}
+        guard unwindSegue.identifier == "tryFetchProfilesAgain" else { return }
         fetchProfiles()
     }
     
+    @IBAction func sortByAlphabetUnwindSegue(_ unwindSegue: UIStoryboardSegue) {
+        guard unwindSegue.identifier == "sortProfilesByAlphabet" else { return }
+        viewModel.sortByAlphabet()
+        tableView.reloadData()
+    }
+    
+    @IBAction func sortByBirthdayUnwindSegue(_ unwindSegue: UIStoryboardSegue) {
+        guard unwindSegue.identifier == "sortProfilesByBirthday" else { return }
+        viewModel.sortByBirthday()
+        tableView.reloadData()
+    }
     
     
     func setupSearchBar() {
-        
+        searchBarView.delegate = self
         searchBarView.setImage(UIImage(named: "filter"), for: .bookmark, state: .normal)
         navigationItem.titleView = searchBarView
     }
@@ -126,13 +138,23 @@ class MainViewController: UIViewController {
 
 extension MainViewController: SkeletonTableViewDataSource {
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows()
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSections()
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return viewModel.numberOfRows(inSection: 0)
+        } else {
+            return viewModel.numberOfRows(inSection: 1)
+        }
+    }
+    
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return "cell"
     }
+    
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MainTableViewCell else {return UITableViewCell()}
@@ -144,6 +166,71 @@ extension MainViewController: SkeletonTableViewDataSource {
 }
 
 extension MainViewController: UITableViewDelegate {
+    
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        } else {
+            return 68
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            return nil
+        } else {
+            let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.size.width, height: 68))
+            
+            let stackView = UIStackView()
+            stackView.axis = .horizontal
+            stackView.distribution = .fill
+            stackView.alignment = .center
+            stackView.spacing = 12
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            
+            let label = UILabel()
+            //label.frame = CGRect.init(x: 0, y: 0, width: headerView.frame.width-40, height: headerView.frame.height)
+            label.text = viewModel.headerForSection
+            label.font = UIFont(name: "Inter-Medium", size: 15) ?? UIFont.systemFont(ofSize: 15)
+            label.textColor = UIColor(named: "defaultSecondary")
+            label.textAlignment = .center
+            
+            let leftLine = UIView()
+            leftLine.backgroundColor = UIColor(named: "defaultSecondary")
+            leftLine.translatesAutoresizingMaskIntoConstraints = false
+            
+            let rightLine = UIView()
+            rightLine.backgroundColor = UIColor(named: "defaultSecondary")
+            rightLine.translatesAutoresizingMaskIntoConstraints = false
+
+            
+            stackView.addArrangedSubview(leftLine)
+            stackView.addArrangedSubview(label)
+            stackView.addArrangedSubview(rightLine)
+            
+            headerView.addSubview(stackView)
+            
+            let constraints = [
+                leftLine.widthAnchor.constraint(equalToConstant: 72),
+                leftLine.heightAnchor.constraint(equalToConstant: 1),
+                rightLine.widthAnchor.constraint(equalToConstant: 72),
+                rightLine.heightAnchor.constraint(equalToConstant: 1),
+                label.widthAnchor.constraint(lessThanOrEqualToConstant: 100),
+                stackView.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+                stackView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor, constant: -10),
+                stackView.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: 20),
+                stackView.rightAnchor.constraint(equalTo: headerView.rightAnchor, constant: -20)
+            ]
+            NSLayoutConstraint.activate(constraints)
+            
+            return headerView
+        }
+    }
+    
+    
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -160,6 +247,18 @@ extension MainViewController: UITableViewDelegate {
                 dvc.viewModel = viewModel.viewModelForSelectedRow()
             }
         }
+        if identifier == "sortSegue" {
+            if let dvc = segue.destination as? SortViewController {
+                dvc.viewModel = viewModel.viewModelForSortViewController()
+            }
+        }
+    }
+}
+
+
+extension MainViewController: UISearchBarDelegate {
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        performSegue(withIdentifier: "sortSegue", sender: nil)
     }
 }
     
